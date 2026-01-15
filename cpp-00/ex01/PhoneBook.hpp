@@ -16,7 +16,10 @@ public:
 	PhoneBook();
 
 	void addContact();
-	void SearchContact();
+	void SearchContact() const;
+	std::string formatField(const std::string &str) const;
+	void printTable() const;
+
 };
 
 #endif
