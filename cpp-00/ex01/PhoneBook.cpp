@@ -1,5 +1,6 @@
 #include "PhoneBook.hpp"
 #include <iostream>
+#include <iomanip>
 
 PhoneBook::PhoneBook() : index(0), count(0)
 {
@@ -23,38 +24,38 @@ std::string PhoneBook::promptField(const std::string &message) const
 
 void PhoneBook::addContact()
 {
-    Contact c;
+	Contact c;
 
-    std::string first = promptField("First name: ");
-    if (first.empty()) 
+	std::string first = promptField("First name: ");
+	if (first.empty()) 
 		return;
-    c.setFirstName(first);
+	c.setFirstName(first);
 
-    std::string last = promptField("Last name: ");
-    if (last.empty()) 
+	std::string last = promptField("Last name: ");
+	if (last.empty()) 
 		return;
-    c.setLastName(last);
+	c.setLastName(last);
 
-    std::string nick = promptField("Nickname: ");
-    if (nick.empty()) 
+	std::string nick = promptField("Nickname: ");
+	if (nick.empty()) 
 		return;
-    c.setNickname(nick);
+	c.setNickname(nick);
 
-    std::string phone = promptField("Phone number: ");
-    if (phone.empty()) 
+	std::string phone = promptField("Phone number: ");
+	if (phone.empty()) 
 		return;
-    c.setPhoneNumber(phone);
+	c.setPhoneNumber(phone);
 
-    std::string secret = promptField("Darkest secret: ");
-    if (secret.empty()) 
+	std::string secret = promptField("Darkest secret: ");
+	if (secret.empty()) 
 		return;
-    c.setDarkestSecret(secret);
+	c.setDarkestSecret(secret);
 
-    contact[index] = c;
-    index = (index + 1) % 8;
-    if (count < 8)
-        count++;
-    std::cout << "Contact added!" << std::endl;
+	contact[index] = c;
+	index = (index + 1) % 8;
+	if (count < 8)
+		count++;
+	std::cout << "Contact added!" << std::endl;
 }
 
 std::string PhoneBook::formatField(const std::string &str) const
@@ -67,7 +68,11 @@ std::string PhoneBook::formatField(const std::string &str) const
 
 void PhoneBook::printTable() const
 {
-	std::cout << "|   Index|First Name| Last Name| NickName|" << std::endl;
+	std::cout	<< "|" << std::setw(10) << "Index"
+				<< "|" << std::setw(10) << "First Name"
+				<< "|" << std::setw(10) << "Last Name"
+				<< "|" << std::setw(10) << "NickName"
+				<< "|" << std::endl;
 
 	for (int i = 0; i < count; i++)
 	{
